@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+{% block title %} {{actor.name}} {% endblock %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ actor.name }}</h1>
+    {% if actor.image %}
+        <img src="{{ actor.image.url }}" alt="{{ actor.name }}">
+    {% else %}
+        <img src="{% static 'image/noimage.gif' %}" alt="Изображение отсутствует">
+    {% endif %}
+    <p>Возраст: {{actor.age}}</p>
+    <p>Пол: {{actor.sex}}</p>
+    <p>Количество оскаров: {{actor.oscars}}</p>
+    <h2>Фильмография:</h2>
+    <ul>
+        {% for movie in movies %}
+            <li><a href="{% url 'movie_detail' movie.pk %}">{{ movie.movie_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+
+

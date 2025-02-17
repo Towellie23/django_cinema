@@ -1,0 +1,24 @@
+{% extends "app/base.html" %}
+{% block title %} {{director.name}} {% endblock %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ director.name }}</h1>
+    {% if director.image %}
+        <img src="{{ director.image.url }}" alt="{{ director.name }}">
+    {% else %}
+        <img src="{% static 'image/noimage.gif' %}" alt="Изображение отсутствует">
+    {% endif %}
+    <p>Возраст: {{director.age}}</p>
+    <p>Пол: {{director.sex}}</p>
+    <h2>Фильмография:</h2>
+    <ul>
+        {% for movie in movies %}
+            <li><a href="{% url 'movie_detail' movie.pk %}">{{ movie.movie_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+
+

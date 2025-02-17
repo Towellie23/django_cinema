@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Cinema{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <h1>My Cinema</h1>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'movies_list' %}">Movies</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'session_list' %}">Sessions</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="container">
+                {% block content %}
+                <!-- Page-specific content will be injected here -->
+                {% endblock %}
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 My Cinema. All rights reserved.</p>
+                <p>Follow us on:
+                    <a href="https://twitter.com/">Twitter</a> |
+                    <a href="https://facebook.com/">Facebook</a> |
+                    <a href="https://instagram.com/">Instagram</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

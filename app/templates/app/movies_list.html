@@ -1,0 +1,11 @@
+{% extends "app/base.html" %}
+{% block title %} Фильмы {% endblock %}
+
+{% block content %}
+    <h1>Список фильмов</h1>
+    <ul>
+        {% for movie in movies %}
+        <li><a href="{% url 'movie_detail' movie.pk %}">{{ movie.movie_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
