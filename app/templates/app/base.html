@@ -13,11 +13,25 @@
             <div class="container">
                 <h1>My Cinema</h1>
                 <nav>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'movies_list' %}">Movies</a></li>
-                        <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="{% url 'session_list' %}">Sessions</a></li>
+                    <ul class="nav-links">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'movies_list' %}">Movies</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'session_list' %}">Sessions</a></li>
+                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                                {% csrf_token %}
+                                <button type="submit">Logout</button>
+                            </form>
+                        {% else %}
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'movies_list' %}">Movies</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'session_list' %}">Sessions</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'registration' %}">Registration</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

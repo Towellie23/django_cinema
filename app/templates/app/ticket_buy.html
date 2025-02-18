@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% block title %}Покупка билета{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Покупка билета на сеанс: {{ session.movie.movie_name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Купить билет</button>
+    </form>
+</div>
+{% endblock %}

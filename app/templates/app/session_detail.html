@@ -14,5 +14,6 @@
     <p>Начало: {{ session.start_time }}</p>
     <p>Конец: {{ session.end_time }}</p>
     <p>Стоимость билета: {{ session.ticket_price }} BYN</p>
+    <a href="{% url 'ticket_buy' session_pk=session.pk %}">Buy ticket</a>
 </div>
 {% endblock %}

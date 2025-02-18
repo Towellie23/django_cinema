@@ -1,18 +1,30 @@
 {% extends 'app/base.html' %}
+{% load static %}
 
 {% block title %}Список сеансов{% endblock %}
 
 {% block content %}
 <div class="container">
     <h1>Список сеансов</h1>
-    <ul>
+    <div class="session-gallery">
         {% for session in sessions %}
-            <li>
-                <p>
-                    <a href="{% url 'session_detail' session.pk %}">{{ session.movie }}</a> Начало: {{ session.start_time }}
-                </p>
-            </li>
+        <div class="session-card">
+            <div class="session-thumbnail">
+                {% if session.movie.image %}
+                <img src="{{ session.movie.image.url }}" alt="{{ session.movie.movie_name }}">
+                {% else %}
+                <img src="{% static 'image/noimage.gif' %}" alt="Изображение отсутствует">
+                {% endif %}
+            </div>
+            <div class="session-info">
+                <h2>
+                    <a href="{% url 'session_detail' session.pk %}">{{ session.movie.movie_name }}</a>
+                </h2>
+                <p>Начало: {{ session.start_time }}</p>
+                <a class="buy-ticket-button" href="{% url 'ticket_buy' session_pk=session.pk %}">Купить билет</a>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}

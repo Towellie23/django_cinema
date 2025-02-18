@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Профиль пользователя: {{ user.username }}</h1>
+    <h2>Купленные билеты:</h2>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                Билет на сеанс: <a href="{% url 'session_detail' ticket.session.pk %}">{{ ticket.session.movie.movie_name }}</a><br>
+                Стоимость: {{ ticket.ticket_price }} BYN
+            </li>
+        {% empty %}
+            <li>У вас нет купленных билетов.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
