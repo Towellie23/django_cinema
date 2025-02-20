@@ -10,7 +10,8 @@ from .tasks import task_1
 
 
 def index(request):
-    return render(request, 'app/index.html')
+    films = Movie.objects.filter(pk__in=[19, 20])
+    return render(request, 'app/index.html', {'films': films})
 
 def contact(request):
     return render(request, 'app/contact.html')
@@ -99,3 +100,6 @@ def parallel_tasks(request):
         response_content += f'<li>{result}</li>'
     response_content += '</ul>'
     return HttpResponse(response_content)
+
+
+

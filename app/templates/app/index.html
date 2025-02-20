@@ -1,11 +1,27 @@
 {% extends "app/base.html" %}
 {% block title %} Главная страница {% endblock %}
-
+{% load static %}
 
 {% block content %}
-    <h1>Это главная страница кинотеатра</h1>
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="col">
+                <h1 class="display-4 text-primary">Скоро! Премьера в нашем кинотеатре</h1>
+                <p class="lead">Не пропустите захватывающие фильмы на большом экране!</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            {% for film in films %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="{{ film.image.url }}" class="card-img-top" alt="{{ film.movie_name }}">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ film.movie_name }}</h3>
+                            <a href="{% url 'movie_detail' film.pk %}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
-
-
-
-

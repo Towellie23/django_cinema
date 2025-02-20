@@ -55,7 +55,7 @@ class Session(models.Model):
     ticket_sold = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'Session on {self.start_time}'
+        return f'Сеанс на {self.start_time}'
 
 class Ticket(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
