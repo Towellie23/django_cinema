@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
 
+# не получается устранить 2 ошибки в тестах
+
 class MovieTests(TestCase):
     def setUp(self):
         self.client = APIClient()
