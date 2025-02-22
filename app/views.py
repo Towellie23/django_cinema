@@ -7,7 +7,9 @@ from .forms import UserRegistrationForm, TicketBuyForm
 from django.contrib.auth import login
 from celery import group
 from .tasks import task_1
-
+from rest_framework import viewsets
+from .serializers import MovieSerializer, SessionSerializer, TicketSerializer
+from rest_framework.permissions import IsAuthenticated
 
 def index(request):
     films = Movie.objects.filter(pk__in=[19, 20])
@@ -100,6 +102,20 @@ def parallel_tasks(request):
         response_content += f'<li>{result}</li>'
     response_content += '</ul>'
     return HttpResponse(response_content)
+
+
+class MovieViewSet(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+class SessionViewSet(viewsets.ModelViewSet):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+
+class TicketViewSet(viewsets.ModelViewSet):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+    permission_classes = [IsAuthenticated]
 
 
 

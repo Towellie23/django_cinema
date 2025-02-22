@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie, Director, Actor, Genre, Session
+from .models import Movie, Director, Actor, Genre, Session, Ticket
 
 
 @admin.action(description='Скидка 30 процентов на билеты')
@@ -13,6 +13,10 @@ def sale_tickets(modeladmin, request, queryset):
 
 class SessionInline(admin.TabularInline):
     model = Session
+    extra = 1
+
+class TicketInline(admin.TabularInline):
+    model = Ticket
     extra = 1
 
 
@@ -31,6 +35,8 @@ class SessionAdmin(admin.ModelAdmin):
     list_display = ('movie', 'start_time', 'ticket_price')
     list_editable = ('ticket_price',)
     actions = [sale_tickets]
+    inlines = [TicketInline]
+    ordering = ('start_time',)
 
 
 admin.site.register(Movie, MovieAdmin)
@@ -38,3 +44,4 @@ admin.site.register(Director)
 admin.site.register(Actor, ActorAdmin)
 admin.site.register(Genre)
 admin.site.register(Session, SessionAdmin)
+admin.site.register(Ticket)

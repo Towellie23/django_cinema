@@ -63,4 +63,4 @@ class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Ticket for {self.session} by {self.user}'
+        return f'Билет на {self.session} пользователя {self.user}'

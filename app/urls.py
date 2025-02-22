@@ -1,9 +1,16 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
 
+
+router = DefaultRouter()
+router.register(r'movies', views.MovieViewSet)
+router.register(r'sessions', views.SessionViewSet)
+router.register(r'tickets', views.TicketViewSet)
 
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('registration/', views.registration, name='registration'),
     path('', views.index, name='home'),
     path('movies_list/', views.movies_list, name='movies_list'),
